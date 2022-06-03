@@ -19,12 +19,20 @@ public class RestaurantController {
     private final RestaurantService restaurantService;
     private final RestaurantRepository restaurantRepository;
 
-    //식당 등록
+    // 서비스 방문 후 하기
     @PostMapping("api/restaurant/register")
     public Restaurant createRest(@RequestBody RestaurantRequestDto requestDto){
         Restaurant restaurant = new Restaurant(requestDto);
-        return restaurantRepository.save(restaurant);
+        return restaurantService.create(restaurant);
     }
+
+
+    //식당 등록
+//    @PostMapping("api/restaurant/register")
+//    public Restaurant createRest(@RequestBody RestaurantRequestDto requestDto){
+//        Restaurant restaurant = new Restaurant(requestDto);
+//        return restaurantRepository.save(restaurant);
+//    }
 
     //전체 식당 조회
     @GetMapping("api/restaurants")
