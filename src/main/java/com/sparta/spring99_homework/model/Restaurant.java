@@ -1,5 +1,6 @@
 package com.sparta.spring99_homework.model;
 
+import com.sparta.spring99_homework.dto.RestaurantRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,4 +25,19 @@ public class Restaurant {
 
     @Column(nullable = false)
     private Long deliveryFee;
+
+
+    public Restaurant(String restName , Long minOrderPrice , Long deliveryFee){
+        this.restName = restName;
+        this.minOrderPrice = minOrderPrice;
+        this.deliveryFee = deliveryFee;
+    }
+
+
+    public Restaurant(RestaurantRequestDto requestDto){
+        this.restName = requestDto.getRestName();
+        this.minOrderPrice = requestDto.getMinOrderPrice();
+        this.deliveryFee = requestDto.getDeliveryFee();
+    }
+
 }
