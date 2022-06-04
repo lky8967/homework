@@ -1,10 +1,13 @@
 package com.sparta.spring99_homework.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sparta.spring99_homework.dto.RestaurantRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
@@ -12,13 +15,13 @@ import javax.persistence.*;
 public class Restaurant {
 
 
-    @Id
     // ID가 자동으로 생성 및 증가합니다.
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(nullable = false)
-    private String restName;
+    private String name;
 
     @Column(nullable = false)
     private Long minOrderPrice;
@@ -26,18 +29,23 @@ public class Restaurant {
     @Column(nullable = false)
     private Long deliveryFee;
 
+    @JsonManagedReference // 직렬화 허용 어노테이션
+    @OneToMany(mappedBy = "restaurant", orphanRemoval = true, cascade = CascadeType.ALL) // orpahRemanal = true 부모 삭제시 자식도 삭제
+    private List<Menu> menuList = new ArrayList<>();
 
-    public Restaurant(String restName , Long minOrderPrice , Long deliveryFee){
-        this.restName = restName;
+    public Restaurant(String name , Long minOrderPrice , Long deliveryFee){
+        this.name = name;
         this.minOrderPrice = minOrderPrice;
         this.deliveryFee = deliveryFee;
     }
 
-
     public Restaurant(RestaurantRequestDto requestDto){
-        this.restName = requestDto.getRestName();
+        this.name = requestDto.getName();
         this.minOrderPrice = requestDto.getMinOrderPrice();
         this.deliveryFee = requestDto.getDeliveryFee();
     }
+
+
+
 
 }

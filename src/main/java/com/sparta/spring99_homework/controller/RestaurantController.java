@@ -5,12 +5,10 @@ import com.sparta.spring99_homework.model.Restaurant;
 import com.sparta.spring99_homework.repository.RestaurantRepository;
 import com.sparta.spring99_homework.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,6 +24,21 @@ public class RestaurantController {
         return restaurantService.create(restaurant);
     }
 
+    //전체 식당 조회
+    @GetMapping("api/restaurants")
+    public List<Restaurant> readRest(){
+        return restaurantRepository.findAll();
+    }
+
+
+    //식당 상세 조회
+    @GetMapping("api/restaurants/{id}")
+    public Restaurant readAllRest(@PathVariable Long id){
+        Restaurant restaurant =  restaurantRepository.findById(id).orElseThrow(
+                ()->new IllegalArgumentException("식당이 존재하지 않습니다."));
+         return restaurant;
+    }
+
 
     //식당 등록
 //    @PostMapping("api/restaurant/register")
@@ -33,11 +46,4 @@ public class RestaurantController {
 //        Restaurant restaurant = new Restaurant(requestDto);
 //        return restaurantRepository.save(restaurant);
 //    }
-
-    //전체 식당 조회
-    @GetMapping("api/restaurants")
-    public List<Restaurant> readRest(){
-        return restaurantRepository.findAll();
-    }
-
 }

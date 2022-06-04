@@ -7,13 +7,18 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @RequiredArgsConstructor
 @Service
 public class RestaurantService {
 
     private final RestaurantRepository restaurantRepository;
 
+    @Transactional
     public Restaurant create(Restaurant restaurant) {
+
+
         return restaurantRepository.save(restaurant);
     }
 }
