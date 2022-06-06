@@ -20,7 +20,6 @@ public class MenuController {
 
     @PostMapping("/api/restaurant/{restaurantId}/food/register")
     public Menu createMenu(@RequestBody MenuRequestDto requestDto, @PathVariable Long restaurantId ){
-//       Menu menu = new Menu(requestDto);
         Restaurant restaurant =  restaurantRepository.findById(restaurantId).orElseThrow(
                 ()->new IllegalArgumentException("식당이 존재하지 않습니다."));
         System.out.println("restaurant = " + restaurant);
