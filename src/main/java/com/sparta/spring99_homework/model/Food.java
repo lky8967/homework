@@ -24,7 +24,7 @@ public class Food {
     private Restaurant restaurant;
 
 
-    @Column(nullable = false , unique = true)
+    @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
