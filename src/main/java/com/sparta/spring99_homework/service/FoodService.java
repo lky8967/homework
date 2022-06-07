@@ -15,9 +15,9 @@ public class FoodService {
     private final FoodRepository foodRepository;
 
     @Transactional
-    public Food create(Food menu) {
+    public Food create(Food food) {
         System.out.println("서비스 문제인");
-        return foodRepository.save(menu);
+        return foodRepository.save(food);
 
     }
 
