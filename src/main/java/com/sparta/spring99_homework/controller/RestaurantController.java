@@ -21,9 +21,10 @@ public class RestaurantController {
     @PostMapping("api/restaurant/register")
     public Restaurant createRest(@RequestBody RestaurantRequestDto requestDto){
         Restaurant restaurant = new Restaurant(requestDto);
-//        if(requestDto.getMinOrderPrice())
-        if(requestDto.getDeliveryFee() <= 0 || requestDto.getDeliveryFee() >= 10000){
+//        Long min = requestDto.getMinOrderPrice();
+        if(requestDto.getDeliveryFee() <= 0 || requestDto.getDeliveryFee() >= 10000) {
             throw new IllegalArgumentException("배달비는 0원 에서 1만원 사이로 입력해주세요 ");
+//        } else if (min.toString().substring(min.length() -1) == 0){
         } else {
             return restaurantService.create(restaurant);
         }
@@ -37,12 +38,12 @@ public class RestaurantController {
 
 
     //식당 상세 조회
-    @GetMapping("api/restaurants/{id}")
-    public Restaurant readAllRest(@PathVariable Long id){
-        Restaurant restaurant =  restaurantRepository.findById(id).orElseThrow(
-                ()->new IllegalArgumentException("식당이 존재하지 않습니다."));
-         return restaurant;
-    }
+//    @GetMapping("api/restaurants/{id}")
+//    public Restaurant readAllRest(@PathVariable Long id){
+//        Restaurant restaurant =  restaurantRepository.findById(id).orElseThrow(
+//                ()->new IllegalArgumentException("식당이 존재하지 않습니다."));
+//         return restaurant;
+//    }
 
 
     //식당 등록

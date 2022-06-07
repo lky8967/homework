@@ -1,7 +1,7 @@
 package com.sparta.spring99_homework.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.sparta.spring99_homework.dto.MenuRequestDto;
+import com.sparta.spring99_homework.dto.FoodRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @Getter
-public class Menu {
+public class Food {
 
 
     @Id
@@ -31,13 +31,13 @@ public class Menu {
     private Long price;
 
 
-    public Menu(String name, Long price ){
+    public Food(String name, Long price ){
         this.name = name;
         this.price = price;
     }
 
 
-    public Menu(MenuRequestDto requestDto, Restaurant restaurant){
+    public Food(FoodRequestDto requestDto, Restaurant restaurant){
         this.name = requestDto.getName();
         this.price = requestDto.getPrice();
         this.restaurant = restaurant;

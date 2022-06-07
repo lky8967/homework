@@ -31,7 +31,7 @@ public class Restaurant {
 
     @JsonManagedReference // 직렬화 허용 어노테이션
     @OneToMany(mappedBy = "restaurant", orphanRemoval = true, cascade = CascadeType.ALL) // orpahRemanal = true 부모 삭제시 자식도 삭제
-    private List<Menu> menuList = new ArrayList<>();
+    private List<Food> foodList = new ArrayList<>();
 
     public Restaurant(String name , Long minOrderPrice , Long deliveryFee){
         this.name = name;

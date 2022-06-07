@@ -1,36 +1,36 @@
 package com.sparta.spring99_homework.controller;
 
-import com.sparta.spring99_homework.dto.MenuRequestDto;
-import com.sparta.spring99_homework.model.Menu;
+import com.sparta.spring99_homework.dto.FoodRequestDto;
+import com.sparta.spring99_homework.model.Food;
 import com.sparta.spring99_homework.model.Restaurant;
-import com.sparta.spring99_homework.repository.MenuRepository;
+import com.sparta.spring99_homework.repository.FoodRepository;
 import com.sparta.spring99_homework.repository.RestaurantRepository;
-import com.sparta.spring99_homework.service.MenuService;
+import com.sparta.spring99_homework.service.FoodService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RequiredArgsConstructor
 @RestController
-public class MenuController {
+public class FoodController {
 
-    private final MenuRepository menuRepository;
+    private final FoodRepository foodRepository;
     private final RestaurantRepository restaurantRepository;
-    private final MenuService menuService;
+    private final FoodService foodService;
 
     @PostMapping("/api/restaurant/{restaurantId}/food/register")
-    public Menu createMenu(@RequestBody MenuRequestDto requestDto, @PathVariable Long restaurantId ){
+    public Food createMenu(@RequestBody FoodRequestDto requestDto, @PathVariable Long restaurantId ){
         Restaurant restaurant =  restaurantRepository.findById(restaurantId).orElseThrow(
                 ()->new IllegalArgumentException("식당이 존재하지 않습니다."));
         System.out.println("restaurant = " + restaurant);
-        Menu menu = new Menu(requestDto , restaurant);
+        Food menu = new Food(requestDto , restaurant);
         System.out.println("menu = " + menu);
-        return menuService.create(menu);
+        return foodService.create(menu);
     }
 
     @GetMapping("/api/restaurant/{restaurantId}/foods")
-    public List<Menu> readMenu(){
-        return menuRepository.findAll();
+    public List<Food> readMenu(){
+        return foodRepository.findAll();
     }
 
 

@@ -1,7 +1,7 @@
 package com.sparta.spring99_homework.service;
 
-import com.sparta.spring99_homework.model.Menu;
-import com.sparta.spring99_homework.repository.MenuRepository;
+import com.sparta.spring99_homework.model.Food;
+import com.sparta.spring99_homework.repository.FoodRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,15 +9,15 @@ import javax.transaction.Transactional;
 
 @RequiredArgsConstructor
 @Service
-public class MenuService {
+public class FoodService {
 
 
-    private final MenuRepository menuRepository;
+    private final FoodRepository foodRepository;
 
     @Transactional
-    public Menu create(Menu menu) {
+    public Food create(Food menu) {
         System.out.println("서비스 문제인");
-        return menuRepository.save(menu);
+        return foodRepository.save(menu);
 
     }
 
