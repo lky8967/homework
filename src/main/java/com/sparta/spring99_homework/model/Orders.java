@@ -1,6 +1,22 @@
 package com.sparta.spring99_homework.model;
 
-public class Orders {
-    private Restaurant restaurant;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
+@Entity
+@NoArgsConstructor
+@Getter
+public class Orders {
+    @Id
+    // ID가 자동으로 생성 및 증가합니다.
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+
+//    private Restaurant restaurant;
+
+    @Column(nullable = false)
+    private int quantity;
 }
