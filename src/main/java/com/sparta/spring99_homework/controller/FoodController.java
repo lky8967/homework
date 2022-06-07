@@ -24,8 +24,15 @@ public class FoodController {
                 ()->new IllegalArgumentException("식당이 존재하지 않습니다."));
         System.out.println("restaurant = " + restaurant);
         Food food = new Food(requestDto , restaurant);
-        System.out.println("food = " + food);
-        return foodService.create(food);
+        System.out.println(food.getName());
+        System.out.println(requestDto.getName());
+//        if(requestDto.getName().equals(food.getName())){
+//            throw new IllegalArgumentException("같은 음식이름을 등록할 수 없습니다 ");
+//        } else {
+            System.out.println("food = " + food);
+            return foodService.create(food);
+
+//        }
     }
 
     @GetMapping("/api/restaurant/{restaurantId}/foods")

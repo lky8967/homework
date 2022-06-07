@@ -19,7 +19,7 @@ public class RestaurantController {
 
     // 서비스 방문 후 하기
     @PostMapping("api/restaurant/register")
-    public Restaurant createRest(@RequestBody RestaurantRequestDto requestDto){
+    public Restaurant createRest(@RequestBody RestaurantRequestDto requestDto) {
         Restaurant restaurant = new Restaurant(requestDto);
         if(requestDto.getDeliveryFee() < 0 || requestDto.getDeliveryFee() > 10000) {
             throw new IllegalArgumentException("배달비는 0원 에서 1만원 사이로 입력해주세요 ");
