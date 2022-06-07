@@ -17,8 +17,6 @@ public class RestaurantService {
 
     @Transactional
     public Restaurant create(Restaurant restaurant) {
-
-
         return restaurantRepository.save(restaurant);
     }
 }
