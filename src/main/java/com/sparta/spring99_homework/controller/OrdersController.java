@@ -1,12 +1,12 @@
 package com.sparta.spring99_homework.controller;
 
+import com.sparta.spring99_homework.dto.OrdersRequestDto;
 import com.sparta.spring99_homework.model.Orders;
+import com.sparta.spring99_homework.model.Restaurant;
 import com.sparta.spring99_homework.repository.OrdersRepository;
 import com.sparta.spring99_homework.service.OrdersService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,10 +18,10 @@ public class OrdersController {
     private final OrdersService ordersService;
 
     //주문
-//    @PostMapping("/api/order/request")
-//    public Orders create(){
-//        return ordersService.create();
-//    }
+    @PostMapping("/api/order/request")
+    public Orders create(@RequestBody List<OrdersRequestDto> requestDto ){
+        return ordersService.create( requestDto);
+    }
 
 
 

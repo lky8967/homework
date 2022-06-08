@@ -6,8 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Map;
 
 @Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames = {"name" , "restaurantId"})})
 @NoArgsConstructor
 @Getter
 public class Food {
@@ -41,7 +43,6 @@ public class Food {
         this.name = requestDto.getName();
         this.price = requestDto.getPrice();
         this.restaurant = restaurant;
-
     }
 
 

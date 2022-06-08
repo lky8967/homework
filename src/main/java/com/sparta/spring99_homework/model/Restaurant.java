@@ -33,6 +33,16 @@ public class Restaurant {
     @OneToMany(mappedBy = "restaurant", orphanRemoval = true, cascade = CascadeType.ALL) // orpahRemanal = true 부모 삭제시 자식도 삭제
     private List<Food> foodList = new ArrayList<>();
 
+
+    @ManyToOne
+    @JoinColumn(name = "orders_id")
+    private Orders orders;
+
+    public void setOrders(Orders orders) {
+        this.orders = orders;
+    }
+
+
     public Restaurant(String name , Long minOrderPrice , Long deliveryFee){
         this.name = name;
         this.minOrderPrice = minOrderPrice;

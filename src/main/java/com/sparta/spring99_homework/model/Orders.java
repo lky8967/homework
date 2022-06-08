@@ -1,11 +1,13 @@
 package com.sparta.spring99_homework.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sparta.spring99_homework.dto.OrdersRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -17,21 +19,15 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @JsonBackReference // 순환 참조 방지
     @ManyToOne
-    @JoinColumn(name = "restaurantId")
+    @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-    @Column(nullable = false)
-    private int quantity;
-
-//    public Orders(int quantity){
-//        this.quantity = quantity;
-//    }
-
-    public Orders(OrdersRequestDto requestDto , Restaurant restaurant){
-        this.quantity = requestDto.getQuantity();
+    public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
+
+
+//    private Restaurant restaurant
 
 }

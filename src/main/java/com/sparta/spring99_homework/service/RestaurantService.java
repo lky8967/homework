@@ -18,6 +18,8 @@ public class RestaurantService {
 
     @Transactional
     public Restaurant create(Restaurant restaurant , @RequestBody RestaurantRequestDto requestDto) {
+
+
         if (requestDto.getDeliveryFee() < 0 || requestDto.getDeliveryFee() > 10000) {
             throw new IllegalArgumentException("배달비는 0원 에서 1만원 사이로 입력해주세요 ");
         } else if (requestDto.getMinOrderPrice() % 500 != 0) {
