@@ -18,7 +18,6 @@ public class FoodService {
     public Food create(Food food) {
         System.out.println("서비스 문제인");
         return foodRepository.save(food);
-
     }
 
 }

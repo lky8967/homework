@@ -1,6 +1,7 @@
 package com.sparta.spring99_homework.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.sparta.spring99_homework.dto.OrdersRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,13 +17,21 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
+    @JsonBackReference // 순환 참조 방지
     @ManyToOne
     @JoinColumn(name = "restaurantId")
     private Restaurant restaurant;
 
-//    private Restaurant restaurant;
-
     @Column(nullable = false)
     private int quantity;
+
+//    public Orders(int quantity){
+//        this.quantity = quantity;
+//    }
+
+    public Orders(OrdersRequestDto requestDto , Restaurant restaurant){
+        this.quantity = requestDto.getQuantity();
+        this.restaurant = restaurant;
+    }
+
 }

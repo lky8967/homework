@@ -6,9 +6,11 @@ import com.sparta.spring99_homework.service.OrdersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@RestController
 @RequiredArgsConstructor
 public class OrdersController {
 
@@ -24,7 +26,7 @@ public class OrdersController {
 
 
     //주문조회
-    @GetMapping("orders")
+    @GetMapping("api/orders")
     public List<Orders> readOrders(){
         return ordersRepository.findAll();
     }
