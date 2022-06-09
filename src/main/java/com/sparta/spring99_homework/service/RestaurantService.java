@@ -18,15 +18,15 @@ public class RestaurantService {
 
     @Transactional
     public Restaurant create(Restaurant restaurant , @RequestBody RestaurantRequestDto requestDto) {
-
-
-        if (requestDto.getDeliveryFee() < 0 || requestDto.getDeliveryFee() > 10000) {
+        int fee = requestDto.getDeliveryFee();
+        int price = requestDto.getMinOrderPrice();
+        if (fee < 0 || fee > 10000) {
             throw new IllegalArgumentException("배달비는 0원 에서 1만원 사이로 입력해주세요 ");
-        } else if (requestDto.getMinOrderPrice() % 500 != 0) {
+        } else if (price % 500 != 0) {
             throw new IllegalArgumentException("500원 단위로 입력해주세요 ");
-        } else if (requestDto.getMinOrderPrice() < 1000 || requestDto.getMinOrderPrice() > 100000) {
+        } else if (price < 1000 || price > 100000) {
             throw new IllegalArgumentException("최소 금액의 입력값은 1000원 에서 100000원 사이로 입력해 주세요 ");
-        } else if (requestDto.getMinOrderPrice() % 100 != 0) {
+        } else if (price % 100 != 0) {
             throw new IllegalArgumentException("100원 단위로 입력해주세요 ");
         } else {
             return restaurantRepository.save(restaurant);

@@ -24,10 +24,10 @@ public class Restaurant {
     private String name;
 
     @Column(nullable = false)
-    private Long minOrderPrice;
+    private int minOrderPrice;
 
     @Column(nullable = false)
-    private Long deliveryFee;
+    private int deliveryFee;
 
     @JsonManagedReference // 직렬화 허용 어노테이션
     @OneToMany(mappedBy = "restaurant", orphanRemoval = true, cascade = CascadeType.ALL) // orpahRemanal = true 부모 삭제시 자식도 삭제
@@ -43,7 +43,7 @@ public class Restaurant {
     }
 
 
-    public Restaurant(String name , Long minOrderPrice , Long deliveryFee){
+    public Restaurant(String name , int minOrderPrice , int deliveryFee){
         this.name = name;
         this.minOrderPrice = minOrderPrice;
         this.deliveryFee = deliveryFee;
@@ -51,8 +51,8 @@ public class Restaurant {
 
     public Restaurant(RestaurantRequestDto requestDto){
         this.name = requestDto.getName();
-        this.minOrderPrice = requestDto.getMinOrderPrice();
         this.deliveryFee = requestDto.getDeliveryFee();
+        this.minOrderPrice = requestDto.getMinOrderPrice();
     }
 
 
